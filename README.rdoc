@@ -1,7 +1,7 @@
 gCamp project
 
 == README
-
+this is cool.....
 
 * Ruby version
 
