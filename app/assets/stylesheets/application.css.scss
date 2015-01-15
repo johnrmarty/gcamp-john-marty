@@ -3,3 +3,12 @@
 
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+ body {
+   padding-top: 70px;
+   font-family: 'Gloria Hallelujah', cursive;
+ }
+
+.jumbotron{
+  background-image: url("http://surveygizmolibrary.s3.amazonaws.com/library/202660/family_photos_kristin_mae_photography001.png");
+}
