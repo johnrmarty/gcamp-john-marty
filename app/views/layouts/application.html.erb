@@ -30,6 +30,7 @@
   <![endif]-->
 </head>
 
+
 <body>
 
   <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -71,13 +72,13 @@
 
     <div class="row">
       <div class="col-md-6">
-        <a href="/about">About</a>
+        <%=link_to "about", about_path %>
         |
-        <a href="/terms">Terms</a>
+        <%=link_to "terms", terms_path %>
         |
-        <a href="/faq">FAQ</a>
+        <%=link_to "faq", faq_path %>
         |
-        <a href="/tasks">Tasks</a>
+        <%=link_to "tasks", tasks_path %>
       </div>
 
       <div class="col-md-6 text-right">
