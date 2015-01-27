@@ -1,3 +1,4 @@
+<div class="form-group">
 <%= form_for(@task) do |f| %>
   <% if @task.errors.any? %>
     <div id="error_explanation">
@@ -11,11 +12,20 @@
     </div>
   <% end %>
 
-  <div class="field">
+
+
+<div class="field">
     <%= f.label :description %><br>
     <%= f.text_field :description %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  </div><br>
+
+<%= f.submit "create task", class: "btn btn-primary btn btn-md active" %>
+<%= f.button link_to('cancel', tasks_path), class: "btn btn-default btn btn-md active" %>
+
+
+
+
+
 <% end %>
+
+</div>
