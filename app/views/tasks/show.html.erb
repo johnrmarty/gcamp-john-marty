@@ -1,18 +1,18 @@
-
-<% if not notice == nil %>
-<center><strong><div class= "alert alert-success">
-  <p id="notice"><%= notice %></p></strong></center>
+<div class="page-header">
+  <div class="pull-right">
+    <a class="btn btn-info" href="/tasks/<%= @task.id %>/edit">Edit</a>
+  </div>
+  <h1> <%= @task.description %></h1>
 </div>
-<% end %>
-
-
-
-
-
 
 <p>
-  <strong>Description:</strong>
-  <%= @task.description %>
-</p>
+  <ol class="breadcrumb">
+    <li><a href="/tasks">Tasks</a></li>
+    <li class="active"><%= @task.description %></li>
+  </ol>
 
-<%= link_to 'Edit', edit_task_path(@task), :class => "btn btn-primary" %>
+</p>
+<div>
+  <strong>Due On:</strong>
+  <%= @task.due_date %>
+</div>

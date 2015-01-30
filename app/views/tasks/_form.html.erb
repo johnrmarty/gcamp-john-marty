@@ -11,6 +11,7 @@
 </div>
 <% end %>
 
+
 <div class="form-group">
   <div class="field">
     <div class="control-label col-md-2">
@@ -25,13 +26,31 @@
 
 <div class="form-group">
     <div class="control-label col-md-2">
-      <%= f.label :date %>
+      <%= f.label :Due_date %>
     </div>
     <div class="col-md-4">
-      <%= f.date_select :description, class: "form-control"%>
+      <%= f.date_select :due_date, class: "form-control"%>
     </div>
   </div>
+
+
+
+
+<% if @task.description == nil %>
+<div class="form-group">
+  <div class="field">
+    <div class="control-label col-md-2">
+      <b><%= f.label :completed %></b>
+    </div>
+    <div class="col-md-4">
+      <%= f.check_box :box %>
+
+    </div>
+
+  </div>
+  <% end %>
 </div>
+
 
 
 
@@ -44,4 +63,5 @@
     </div>
   </div>
 </div>
+
 <% end %>
