@@ -1,10 +1,17 @@
-<%= form_for(@task, html: {class:"form-horizontal"}) do |f| %>
-<% if @task.errors.any? %>
+
+
+<div class="page-header">
+  <h1> New User </h1>
+</div>
+
+
+<%= form_for(@user, html: {class:"form-horizontal"}) do |f| %>
+<% if @user.errors.any? %>
 <div id="error_explanation">
-  <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+  <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
   <ul>
-    <% @task.errors.full_messages.each do |message| %>
+    <% @user.errors.full_messages.each do |message| %>
     <li><%= message %></li>
     <% end %>
   </ul>
@@ -15,10 +22,10 @@
 <div class="form-group">
   <div class="field">
     <div class="control-label col-md-2">
-      <%= f.label :description %>
+      <%= f.label :first_name %>
     </div>
     <div class="col-md-4">
-      <%= f.text_field :description, class: "form-control"%>
+      <%= f.text_field :first_name, class: "form-control"%>
     </div>
   </div>
 </div>
@@ -26,35 +33,28 @@
 
 <div class="form-group">
     <div class="control-label col-md-2">
-      <%= f.label :Due_date %>
+      <%= f.label :last_name %>
     </div>
     <div class="col-md-4">
-      <%= f.date_select :due_date, class: "form-control"%>
+      <%= f.text_field :last_name, class: "form-control"%>
     </div>
   </div>
 
-  <% if @task.description != nil %>
   <div class="form-group">
-    <div class="field">
       <div class="control-label col-md-2">
-        <b><%= f.label :completed %></b>
+        <%= f.label :email %>
       </div>
       <div class="col-md-4">
-        <%= f.check_box :box %>
-
+        <%= f.email_field :email, class: "form-control"%>
       </div>
-
     </div>
-  </div>
-    <% end %>
-
 
 
 <div class="form-group">
   <div class="col-md-4 col-md-offset-2">
     <div class="action">
       <%= f.submit @submit, class: "btn btn-primary btn-md active" %>
-      <%= link_to 'Cancel', tasks_path, class: "btn btn-default" %>
+      <%= link_to 'cancel', users_path, class: "btn btn-default" %>
     </div>
   </div>
 </div>

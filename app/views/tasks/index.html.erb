@@ -3,9 +3,7 @@
   <div class="container">
     <div class="page-header">
       <div class="pull-right">
-        <button class="btn btn-info">
-          <%= link_to 'New Task', new_task_path %>
-        </button>
+        <%= link_to 'New Task', new_task_path, class: "btn btn-info" %>
       </div>
       <h1>Listing Tasks</h1>
     </div>
@@ -23,12 +21,8 @@
 
           <td><%= link_to task.description, task %></td>
           <td><div class="text-right">
-            <button class="btn btn-info">
-              <%= link_to 'Edit', edit_task_path(task) %>
-            </button>
-            <button class="btn btn-danger">
-              <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %>
-            </button>
+              <%= link_to 'Edit', edit_task_path(task), class: "btn btn-info"%>
+              <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
           </div>
         </td>
       </tr>
