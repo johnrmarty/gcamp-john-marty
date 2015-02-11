@@ -11,10 +11,18 @@ class UsersController < ApplicationController
 
   def create
       @user = User.new(user_params)
+     
+      respond_to do |format|
       if @user.save
-        redirect_to users_path, notice:'User was successfully created'
+
+        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.json { render :show, status: :created, location: @user }
+      else
+        format.html { render :new }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+  end
 
 
     def update
@@ -30,7 +38,9 @@ class UsersController < ApplicationController
 
     def edit
       @user = User.find(params[:id])
-    end
+    end     
+
+    
 
     def show
       @user = User.find(params[:id])
@@ -39,7 +49,7 @@ class UsersController < ApplicationController
     def destroy
       @user = User.find(params[:id])
       @user.destroy
-      redirect_to users_path, notice: 'User was successfully destroyed.'
+      redirect_to users_path, notice: 'User was successfully deleted.'
     end
 
     private

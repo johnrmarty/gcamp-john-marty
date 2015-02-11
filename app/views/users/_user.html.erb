@@ -50,9 +50,9 @@
 <div class="form-group">
   <div class="col-md-4 col-md-offset-2">
     <div class="action">
-      <%= f.submit class: "btn btn-primary btn-md active" %>
-      <%= link_to 'cancel', user_path, class: "btn btn-default" %>
-      <%= link_to 'delete', user_path, method: :delete, data: {confirm: 'Are you Sure?'}, class: "btn btn-danger" %>
+      <%= f.submit @submit, class: "btn btn-primary btn-md active" %>
+      <%= link_to 'cancel', users_path, class: "btn btn-default" %>
+     <!--  <%= link_to 'delete', @user, method: :delete, data: {confirm: 'Are you Sure?'}, class: "btn btn-danger" %> -->
     </div>
   </div>
 </div>

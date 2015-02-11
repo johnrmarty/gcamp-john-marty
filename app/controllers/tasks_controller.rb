@@ -15,7 +15,7 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     @task = Task.new
-    @submit = "Submit"
+    @submit = "Create task"
   end
 
   # GET /tasks/1/edit
