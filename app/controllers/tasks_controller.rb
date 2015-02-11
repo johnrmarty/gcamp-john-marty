@@ -20,7 +20,7 @@ class TasksController < ApplicationController
 
   # GET /tasks/1/edit
   def edit
-    @submit = "Update"
+    @submit = "Update Task"
   end
 
   # POST /tasks
