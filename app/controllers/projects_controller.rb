@@ -18,10 +18,10 @@ class ProjectsController < ApplicationController
    end
 
    def create
-     @projects = Project.new(project_params)
+     @project = Project.new(project_params)
+      if @project.save
 
-     if @projects.save
-       redirect_to @projects, notice: 'Project was successfully created'
+       redirect_to projects_path, notice: 'Project was successfully created'
      else
        render :new
      end
