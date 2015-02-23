@@ -36,6 +36,15 @@
         <a class="navbar-brand" href="#">gCamp</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
+         <ul class="nav navbar-nav navbar-right">
+          <% if current_user %>
+            <li><%= link_to "#{current_user.first_name} #{current_user.last_name}", edit_user_path(current_user) %></li> 
+            <li><%= link_to 'Signout', signout_path %></li> 
+            <% else %> 
+            <li><%= link_to 'Signup', registration_path %></li>    
+            <li><%= link_to 'Signin', signin_path %></li>
+            <% end %> 
+          </ul>
 
       </div><!--/.navbar-collapse -->
     </div>

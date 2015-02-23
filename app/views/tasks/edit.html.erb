@@ -7,5 +7,7 @@
   <li class="active"><%= @task.description %></li>
 </ol>
 
+<%= render(:partial => "shared/errors", :locals => {:object => @task}) %> 
+
 
 <%= render 'form' %>

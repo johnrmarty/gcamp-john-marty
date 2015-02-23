@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
 
   validates :first_name, presence: true, allow_blank: false
   validates :last_name, presence: true, allow_blank: false
-  validates :email, presence: true, uniqueness: true 
+  validates :email, presence: true, uniqueness: true
+  validates :password, presence: true
+
 
 end 

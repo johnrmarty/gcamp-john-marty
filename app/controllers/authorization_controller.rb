@@ -1,5 +1,7 @@
 class AuthorizationController < ApplicationController
 
+	def signin
+	end
 
 	def create
 	    user = User.find_by_email(params[:email])
@@ -8,35 +10,20 @@ class AuthorizationController < ApplicationController
 	      redirect_to root_path
 	    else
 	      @sign_in_error = "Username / password combination is invalid"
-	      render :new
+	      render :signin
 	    end
-	  end
-	
+	end
+
+
+
+
 	  def destroy
 	    session.clear
 	    redirect_to root_path
 	  end
-	
-	
-	
-	
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 end 
+	
+	
+	
 

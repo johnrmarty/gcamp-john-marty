@@ -39,6 +39,9 @@ gem 'pg'
 
 group :production do
   gem 'rails_12factor'
+  gem 'rspec-rails'
+gem 'capybara'
+gem 'spring-commands-rspec'
 end
 
 group :development, :test do
