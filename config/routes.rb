@@ -1,7 +1,19 @@
 Rails.application.routes.draw do
   root 'welcome#index'
 
+  get '/users' => 'users#registration'
+
   resources :tasks, :users, :projects
+  resources :sessions, only: [:create]
+
+  get '/login' => 'sessions#new'
+  get '/logout' => 'sessions#destroy'
+  post '/login' => 'sessions#create'
+
+
+
+
+
 
 
 
@@ -9,18 +21,11 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  get 'faq' => 'faq#index'
-  get 'about' => 'about#index'
-  get 'terms' => 'terms#index'
-  get 'tasks' => 'tasks#index'
-  get 'registration' => 'registration#signup'
-  get 'signin' => 'authorization#signin'
-  post 'authorization' => 'authorization#create'
-  get 'signout' => 'authorization#destroy'
+  get '/faq' => 'faq#index'
+  get '/about' => 'about#index'
+  get '/terms' => 'terms#index'
+  get '/tasks' => 'tasks#index'
   
-
-
-   # get 'registration' => 'users#new'
 
 
 

@@ -1,15 +1,19 @@
 
 
-<%= form_tag authorization_path do %>
+<%= form_tag login_path do %>
 
 
 
-<div class="col-md-4 col-md-offset-4">
-<div class="well">
+<div class="well col-md-4 col-md-offset-4">
 <h1> Signin to gCamp </h1>
 <br>
 
 
+<div class="alert alert-danger" role="alert">
+<% if notice %>
+<%= notice %>
+<% end %>
+</div>
 
   <div class="form-group">
       <label class="col-md-4">
@@ -43,6 +47,5 @@
 <% end %>
 </div>
 </div>
-
 
 
