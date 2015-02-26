@@ -41,7 +41,7 @@
             <li><%= link_to "#{current_user.first_name} #{current_user.last_name}", edit_user_path(current_user) %></li> 
             <li><%= link_to 'Signout', logout_path %></li> 
             <% else %> 
-            <li><%= link_to 'Signup', users_path %></li>    
+            <li><%= link_to 'Signup', registration_path %></li>    
             <li><%= link_to 'Signin', login_path %></li>
             <% end %> 
           </ul>
@@ -70,11 +70,9 @@
     <center><%= notice %></center>
   </div>
 
-
-  <% elsif alert %>
-  <div class="alert alert-danger"><%= alert %>
-  </div>
   <% end %>
+
+
 
 
 
@@ -91,8 +89,6 @@
           <%=link_to "Terms", terms_path %>
           |
           <%=link_to "Faq", faq_path %>
-          |
-          <%=link_to "Tasks", tasks_path %>
           |
           <%=link_to "Users", users_path %>
           |

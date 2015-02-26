@@ -4,9 +4,23 @@
 describe 'User can CRUD a task' do 
 	
 
+	before :each do 
+
+	 User.create(email: 'q@q.com', password: 'q', first_name: 'john', last_name: 'marty')
+		
+		visit '/'
+		click_on "Signin"
+		fill_in 'email', :with => "q@q.com"
+		fill_in 'password', :with => "q"
+		click_on "Sign in"		
+	
+	
+	end 
+
+
 	 scenario 'Users can create a task' do
-		# visit tasks index
-		visit '/tasks'
+
+		click_on "Tasks"
 		# click on link to go to new task form
 		click_on "New Task"
 		#filling out form for task
@@ -54,8 +68,6 @@ scenario 'Users can delete a task' do
 
 	@task = Task.create(:description => "Example task", :due_date => "2015-01-30")
 		visit "/tasks"
-
-		click_on "Tasks"
 		click_on "Destroy"
 		expect(page).to have_content("Task was successfully destroyed.")
 

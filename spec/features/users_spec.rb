@@ -2,10 +2,25 @@ require 'rails_helper'
 
 
 describe 'User can CRUD a user' do 
+
+
+	before :each do 
+
+	 User.create(email: 'q@q.com', password: 'q', first_name: 'john', last_name: 'marty')
+		
+		visit '/'
+		click_on "Signin"
+		fill_in 'email', :with => "q@q.com"
+		fill_in 'password', :with => "q"
+		click_on "Sign in"		
+	
+	
+	end 
 	
 
 	 scenario 'Users can create a new user' do
 	
+
 		visit '/'
 
 		click_on "Users"
@@ -32,11 +47,16 @@ scenario 'Users can edit a user' do
 
 	@user = User.create(:first_name => "john", :last_name => "marty", :email => "john@gmail.com", :password => "marty")
 		
-		visit '/'
 
 		click_on "Users"
 
-		click_on "Edit"
+
+		within('tbody') do
+			within('tr:first') do
+  				click_on('Edit')
+			end
+		end 
+		
 
 		fill_in 'user[first_name]', with: "johnny"
     	fill_in 'user[last_name]', with: "martyyy"
@@ -56,15 +76,18 @@ scenario 'Users can delete a user' do
 
 	@user = User.create(:first_name => "john", :last_name => "marty", :email => "john@gmail.com", :password => "marty")
 		
-		visit '/'
 
 		click_on "Users"
 
-		click_on "Edit"
+		within('tbody') do
+			within('tr:first') do
+  				click_on('Edit')
+			end
+		end
 
-    	click_on "delete"
+		click_on "delete"
 		
-		expect(page).to have_content("User was successfully deleted.") 	
+		expect(page).to have_content ("User was successfully deleted.")	
 	end 
 
 

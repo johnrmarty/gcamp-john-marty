@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
 
+  before_action :user_logged_in!
+
   def new
     @user = User.new
   
-
   end
 
   def index
