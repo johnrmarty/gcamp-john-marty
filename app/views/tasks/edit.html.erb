@@ -1,13 +1,4 @@
 <h1>Editing Task</h1>
 
-<ol class="breadcrumb">
-  <li><a href="/tasks">Tasks</a></li>
-  <li><%= link_to 'Tasks', tasks_path %></li>
-
-  <li class="active"><%= link_to @task.description, @task %></li>
-</ol>
-
-<%= render(:partial => "shared/errors", :locals => {:object => @task}) %> 
-
 
 <%= render 'form' %>

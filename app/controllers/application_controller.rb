@@ -14,9 +14,6 @@ class ApplicationController < ActionController::Base
   	redirect_to root_path
   end 
 
-  def registration
-  end 
-
 
   def sign_in(user)
   	session[:user_id] = user.id if user.present?
