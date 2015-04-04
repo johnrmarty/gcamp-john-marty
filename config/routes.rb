@@ -15,7 +15,11 @@ Rails.application.routes.draw do
       resources :sessions, only: [:create]
 
       resources :projects do
-      resources :tasks    
+            resources :tasks  
+            resources :memberships
+      end 
+end 
 
-end 
-end 
+
+
+

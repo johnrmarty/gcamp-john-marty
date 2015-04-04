@@ -4,7 +4,7 @@
     <div class="page-header">
       <div class="pull-right">
         <%= link_to 'Edit', edit_project_path, class: "btn btn-info" %>
-        <%= link_to 'Delete', project_path, class: "btn btn-info" %>
+        <%= link_to 'Delete', project_path, class: "btn btn-danger" %>
       </div>
       
       <h1><%= @project.name %></h1>
@@ -12,19 +12,17 @@
 
     <ol class="breadcrumb">
   		<li><a href="/projects">Projects</a></li>
-				<li class="active"><%= @project.name %></li>
-	</ol>
+      <li><%= link_to @project.name %></li>
+        </ol>
+	
 
    
-		<%= link_to 'Tasks', project_tasks_path(@project), class: "btn btn-info" %>
-    
-             
+		<%= link_to @project.task_count, project_tasks_path(@project)%> 
+    <br>
+    <%= link_to @project.membership_count, project_memberships_path(@project) %>     
 
 </div>
 </body>
-
-
-
 
 
 

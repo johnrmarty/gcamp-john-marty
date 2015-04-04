@@ -4,7 +4,11 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end 
 
-    has_secure_password
+has_many :memberships, dependent: :destroy
+has_many :projects, through: :memberships
+
+
+  has_secure_password
 
   validates :first_name, presence: true, allow_blank: false
   validates :last_name, presence: true, allow_blank: false
@@ -13,3 +17,5 @@ class User < ActiveRecord::Base
 
 
 end 
+
+

@@ -1,1 +1,28 @@
-<h1> projects show </h1>
+<div class="page-header">
+	<div class="pull-right">
+		<%= link_to "Edit", edit_project_task_path(@project, @task), class: "btn btn-info" %> 
+	</div>
+	<h1><strong><%= @task.description %></h1></strong></div>
+</div>
+
+<div class="container">
+  <ol class="breadcrumb">
+    <li><a href="/projects">Projects</a></li>
+    <li class="active"><%= link_to @project.name, project_path(@project) %></li>
+    <li class="active"><%= @task.description %></li>
+  </ol>
+
+
+ 
+<dl class="dl-horizontal">
+  <p>
+    <dt>Description</dt>
+      <dd><%= @task.description %></dd>
+  <p>
+    <dt>Complete</dt>
+      <dd><%= @task.due_date %></dd>
+  <p>
+    <dt>Due On</dt>
+      <dd><%= @task.due_date %></dt>
+</dl>
+
