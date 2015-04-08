@@ -1,11 +1,11 @@
 <div class="page-header">
-<h1><%= @project.name %>: Manage Members </h1>	
+  <h1><%= @project.name %>: Manage Members </h1>	
 </div>
 
 <ol class="breadcrumb">
   <li><a href="/projects">Projects</a></li>
   <li><%= link_to @project.name %></li>
-   <li class="active">Memberships</li>
+  <li class="active">Memberships</li>
 </ol>
 
 <%= render(:partial => "shared/errors", :locals => {:object => @membership}) %>
@@ -14,30 +14,27 @@
 	<%= form_for [@project, @membership] do |f| %> 
 	<%=f.collection_select(:user_id, User.all, :id, :fullname, {include_blank:"Please select a user"}, class: "form-control") %>
 	<%= f.select :role, Membership.roles.keys.map {|role| [role.titleize,role]}, {}, class: "form-control" %> 
-    <%= f.submit 'Add new Member', class: "btn btn-primary" %>
-    <% end %> 
+  <%= f.submit 'Add new Member', class: "btn btn-primary" %>
+  <% end %> 
 </div>
- 
+
 
 <div class="form-inline">
-
-<% @project.memberships.each do |membership| %>
-<%= form_for [@project, membership] do |f| %>
-<div class="form-group col-md-2">
-<%= link_to membership.user.fullname, user_path(membership.user) %>
+  <% @project.memberships.each do |membership| %>
+  <%= form_for [@project, membership] do |f| %>
+<div class="form-group col-md-1">
+    <h4><%= link_to membership.user.fullname, user_path(membership.user) %></h4>
 </div>
 <div class="form-group">
-<%= f.select :role, Membership.roles.keys.map {|role| [role.titleize,role]}, {}, class: "form-control" %>
+  <%= f.select :role, Membership.roles.keys.map {|role| [role.titleize,role]}, {}, class: "form-control" %>
 </div>
 <div class="form-group">
-<%= f.submit 'Update', class: 'btn btn-primary' %>
-
-
-<%= link_to project_membership_path(@project, membership), method: :delete, data: {confirm: 'Are you sure'} do %>
-<span class= "glyphicon glyphicon-remove"></span>
+  <%= f.submit 'Update', class: 'btn btn-primary' %>
+  <%= link_to project_membership_path(@project, membership), method: :delete, data: {confirm: 'Are you sure'} do %>
+      <span class= "glyphicon glyphicon-remove"></span>
 </div>
+  
 <% end %>
-
 <% end %>
 <% end %>
 
