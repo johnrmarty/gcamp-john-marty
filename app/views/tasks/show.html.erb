@@ -15,14 +15,26 @@
 
  
 <dl class="dl-horizontal">
+  <p><dt>Due on:</dt></p>
+  <dd><%= @task.due_date %></dd>
   <p>
-    <dt>Description</dt>
-      <dd><%= @task.description %></dd>
-  <p>
-    <dt>Complete</dt>
-      <dd><%= @task.due_date %></dd>
-  <p>
-    <dt>Due On</dt>
-      <dd><%= @task.due_date %></dt>
+    <dt>Complete:</dt>
+      <dd><%= @task.box %></dt>   
 </dl>
+
+<div class="pull-left">
+  <h2>Comments</h2>
+</div>
+
+<%= form_for(@comment, html: {class:"form-horizontal"}) do |f| %>
+
+<div class="form-group">
+  <%= f.text_field :body, class: "form-control"%>
+  <div class="col-md-9">
+    <%= %> 
+     <%= link_to "Add Comment", root_path, class: "btn btn-primary" %> 
+  </div>  
+</div>
+
+
 

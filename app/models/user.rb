@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end 
 
+has_many :comments
+
 has_many :memberships, dependent: :destroy
 has_many :projects, through: :memberships
 
