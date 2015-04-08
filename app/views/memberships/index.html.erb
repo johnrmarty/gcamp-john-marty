@@ -8,9 +8,10 @@
   <li class="active">Memberships</li>
 </ol>
 
-<%= render(:partial => "shared/errors", :locals => {:object => @membership}) %>
+
 
 <div class="well form-inline">
+  <%= render(:partial => "shared/errors", :locals => {:object => @membership}) %>
 	<%= form_for [@project, @membership] do |f| %> 
 	<%=f.collection_select(:user_id, User.all, :id, :fullname, {include_blank:"Please select a user"}, class: "form-control") %>
 	<%= f.select :role, Membership.roles.keys.map {|role| [role.titleize,role]}, {}, class: "form-control" %> 

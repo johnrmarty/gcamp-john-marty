@@ -8,9 +8,9 @@ class RegistrationController < ApplicationController
      @user = User.new(user_params)
      	if @user.save 
      		session[:user_id] = @user.id
-     			redirect_to root_path, notice: 'You successfully signed in'
-     		else
-     	render :new 
+     		redirect_to root_path, notice: 'You successfully signed in'
+     	else
+     	  render :new 
      	end 
      end 
 
