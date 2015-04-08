@@ -34,7 +34,7 @@ class MembershipsController < ApplicationController
    @project = Project.find(params[:project_id])
    @membership = Membership.find(params[:id])
    if @membership.update(membership_params)
-    redirect_to project_memberships_path(@project), notice: "#{@membership.user.fullname} was successfully added"
+    redirect_to project_memberships_path(@project), notice: "#{@membership.user.fullname} was successfully updated"
   else
     render :edit 
   end
