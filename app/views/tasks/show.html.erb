@@ -13,28 +13,41 @@
   </ol>
 
 
- 
-<dl class="dl-horizontal">
-  <p><dt>Due on:</dt></p>
-  <dd><%= @task.due_date %></dd>
-  <p>
-    <dt>Complete:</dt>
-      <dd><%= @task.box %></dt>   
-</dl>
 
-<div class="pull-left">
-  <h2>Comments</h2>
-</div>
+<p>
+  <h5><strong>Due on:  <%= @task.due_date %></strong></h5>
+  <h5><strong>Complete:  <%= @task.box %></strong></h5>
+</p>
 
-<%= form_for(@comment, html: {class:"form-horizontal"}) do |f| %>
 
-<div class="form-group">
-  <%= f.text_field :body, class: "form-control"%>
-  <div class="col-md-9">
-    <%= %> 
-     <%= link_to "Add Comment", root_path, class: "btn btn-primary" %> 
-  </div>  
-</div>
+<h2>Comments</h2>
+
+<% @comments.each do |comment| %>
+    <div class="row">
+      <div class="col-md-3">
+        <strong><%= link_to comment.user.fullname, user_path(comment.user) %></strong>
+          <p class="text-muted"><%= "#{time_ago_in_words(comment.created_at)} ago " %></p>
+      </div>
+      <div class="col-md-9 pull-right">
+        <%=  comment.body %>
+      </div>
+    </div>
+    <% end %>
+
+
+  <%= form_for([@project, @task, @comment], html: {class: "form-horizontal"}) do |f| %>
+  <div class="col-md-offset-3 col-md-9">
+    <div class="form-group">
+      <%= f.text_field :body, class: "form-control"%>
+    </div>
+    <div class="form-group">
+      <%= f.submit class: "btn btn-primary" %>
+    </div>   
+  </div>
+  <% end %>
+
+</div> 
+
 
 
 

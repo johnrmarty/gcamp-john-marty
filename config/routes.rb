@@ -1,24 +1,29 @@
 Rails.application.routes.draw do
   root 'welcome#index'
 
-      get '/faq' => 'faq#index'
-      get '/about' => 'about#index'
-      get '/terms' => 'terms#index'
+  get '/faq' => 'faq#index'
+  get '/about' => 'about#index'
+  get '/terms' => 'terms#index'
 
-      get '/login' => 'sessions#new'
-      get '/logout' => 'sessions#destroy'
-      post '/login' => 'sessions#create'
-      get '/registration' => 'registration#new'
-      post '/registration' => 'registration#create'
+  get '/login' => 'sessions#new'
+  get '/logout' => 'sessions#destroy'
+  post '/login' => 'sessions#create'
+  get '/registration' => 'registration#new'
+  post '/registration' => 'registration#create'
 
-      resources :users
-      resources :sessions, only: [:create]
+  resources :users
+  resources :sessions, only: [:create]
 
-      resources :projects do
-            resources :tasks  
-            resources :memberships
-      end 
-end  
+  resources :projects do
+    resources :tasks do
+      resources :comments, only: [:create]
+  end   
+  resources :memberships
+end 
+
+end
+
+
 
 
 
