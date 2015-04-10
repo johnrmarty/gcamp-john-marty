@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
       if @comment.save 
         redirect_to project_task_path(@project, @task), notice: "Comment was saved successfully"
       else
-        redirect_to project_task_path(@project, @task), notice: "Try again"
+        redirect_to project_task_path(@project, @task)
       end 
   end 
 

@@ -17,12 +17,34 @@
 	
 
    
-		<%= link_to @project.task_count, project_tasks_path(@project)%> 
+		<strong><%= link_to @project.task_count, project_tasks_path(@project)%></strong> 
     <br>
-    <%= link_to @project.membership_count, project_memberships_path(@project) %>     
+    <strong><%= link_to @project.membership_count, project_memberships_path(@project) %></strong>
+
+    <br>
+    <br>  
+
+    <div class="well">
+      <div class="form-group">
+        <h1>Delete Project</h1>
+      </div>
+      <div class="form-group">
+        <strong><%= "Deleting this project will also delete #{@project.membership_count}, #{@project.task_count} and associated comments" %></strong>
+      </div>
+      <div class="form-group">
+        <%= link_to 'Delete', @project, class: "btn btn-danger", method: :delete, data: {confirm: "Are you sure?"} %> 
+      </div>
+    </div>    
 
 </div>
 </body>
+
+
+
+
+
+
+
 
 
 
