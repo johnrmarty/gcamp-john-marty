@@ -4,6 +4,15 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end 
 
+  def user_count
+  	if users.count == 1
+  		"#{users.count} User"
+  	else
+  		"#{users.count} Users"
+  	end
+  end 
+
+
 has_many :comments
 
 has_many :memberships, dependent: :destroy
@@ -19,5 +28,9 @@ has_many :projects, through: :memberships
 
 
 end 
+
+
+
+	
 
 

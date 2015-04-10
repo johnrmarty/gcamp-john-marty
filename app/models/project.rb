@@ -1,9 +1,9 @@
 class Project < ActiveRecord::Base
 
 
-  has_many :memberships
+  has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
-  has_many :tasks
+  has_many :tasks, dependent: :destroy
 	
 
   validates :name, presence: true, allow_blank: false 
@@ -17,6 +17,7 @@ class Project < ActiveRecord::Base
     	end
   	end
 
+  
   def membership_count
     	if memberships.count == 1
       		"#{memberships.count} Member"

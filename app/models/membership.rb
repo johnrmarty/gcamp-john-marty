@@ -1,5 +1,13 @@
 class Membership < ActiveRecord::Base
 
+	def membership_count
+		if membership.count == 1
+			"#{membership.count} Membership"
+		else
+			"#{membership.count} Memberships"
+		end 
+	end 
+
 belongs_to :user 
 belongs_to :project
 

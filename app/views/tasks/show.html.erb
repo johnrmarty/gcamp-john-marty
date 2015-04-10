@@ -1,3 +1,4 @@
+
 <div class="page-header">
 	<div class="pull-right">
 		<%= link_to "Edit", edit_project_task_path(@project, @task), class: "btn btn-info" %> 
@@ -14,19 +15,19 @@
 
 
 
-<p>
-  <h5><strong>Due on:  <%= @task.due_date %></strong></h5>
-  <h5><strong>Complete:  <%= @task.box %></strong></h5>
-</p>
+  <p>
+    <h5><strong>Due on:  <%= @task.due_date %></strong></h5>
+    <h5><strong>Complete:  <%= @task.box %></strong></h5>
+  </p>
 
 
-<h2>Comments</h2>
+  <h2>Comments</h2>
 
-<% @comments.each do |comment| %>
+    <% @comments.each do |comment| %>
     <div class="row">
       <div class="col-md-3">
         <strong><%= link_to comment.user.fullname, user_path(comment.user) %></strong>
-          <p class="text-muted"><%= "#{time_ago_in_words(comment.created_at)} ago " %></p>
+          <p class="text-muted"><%= time_ago_in_words(comment.created_at) %></p>
       </div>
       <div class="col-md-9 pull-right">
         <%=  comment.body %>

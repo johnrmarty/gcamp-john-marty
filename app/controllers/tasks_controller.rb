@@ -18,7 +18,8 @@ class TasksController < ApplicationController
     @project = Project.find(params[:project_id])
     @task = Task.find(params[:id])
     @comment = Comment.new
-    @comments = Comment.all
+    @comments = @task.comments.all
+
   end
 
   # GET /tasks/new
