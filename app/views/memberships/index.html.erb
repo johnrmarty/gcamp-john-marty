@@ -20,24 +20,33 @@
 </div>
 
 
-<div class="form-inline">
-  <% @project.memberships.each do |membership| %>
-  <%= form_for [@project, membership] do |f| %>
-<div class="form-group col-md-1">
-    <h4><%= link_to membership.user.fullname, user_path(membership.user) %></h4>
+
+  <div class="form-inline">
+    <div class="row">
+    <% @project.memberships.each do |membership| %>
+    <%= form_for [@project, membership] do |f| %>
+    <div class="form-group col-md-2">
+      <%= link_to membership.user.fullname, user_path(membership.user) if membership.user %>
+    </div>
+    <div class="form-group">
+      <%= f.select :role, Membership.roles.keys.map {|role| [role.titleize,role]}, {}, class:"form-control"%>
+    </div>
+    <div class="form-group">
+      <div class="action">
+        <%= f.submit "Update", class: "btn btn-info" %>
+        <%= link_to project_membership_path(@project, membership), method: :delete, data: {confirm: 'Are you sure'} do %>
+        <span class= "glyphicon glyphicon-remove"></span>
+      </div>
+    </div>
+    <% end %>
+    <br>
+    <% end %>
+    <% end %> 
+  </div>
 </div>
-<div class="form-group">
-  <%= f.select :role, Membership.roles.keys.map {|role| [role.titleize,role]}, {}, class: "form-control" %>
 </div>
-<div class="form-group">
-  <%= f.submit 'Update', class: 'btn btn-primary' %>
-  <%= link_to project_membership_path(@project, membership), method: :delete, data: {confirm: 'Are you sure'} do %>
-      <span class= "glyphicon glyphicon-remove"></span>
-</div>
-  
-<% end %>
-<% end %>
-<% end %>
+
+
 
 
 
