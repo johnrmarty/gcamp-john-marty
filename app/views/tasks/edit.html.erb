@@ -1,4 +1,10 @@
 <h1>Editing Task</h1>
 
+<ol class="breadcrumb">
+	<li><a href="/projects">Projects</a></li>
+	<li><%= link_to @project.name, project_path(@project) %></li>
+	<li><%= link_to @task.description, project_task_path(@project, @task) %> </li>
+</ol>
+
 
 <%= render 'form' %>

@@ -9,6 +9,7 @@ class TasksController < ApplicationController
   def index
     @project = Project.find(params[:project_id])
     @tasks = @project.tasks
+    @comments = Comment.all
   end
 
   # GET /tasks/1
@@ -39,7 +40,7 @@ class TasksController < ApplicationController
     @project = Project.find(params[:project_id])
     @task.project_id = params[:project_id]
     if @task.save
-      redirect_to project_tasks_path(@project, @task), notice: 'Task was successfully created.'
+      redirect_to project_tasks_path(@project), notice: 'Task was successfully created.'
     else
       render :new      
     end
