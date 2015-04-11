@@ -18,12 +18,14 @@
 
       <tbody>
         <% @projects.each do |project| %>
-        <tr>
+          <tr> 
+             <% if current_user.member?(project) || current_user.owner?(project) %> 
              <td><%= link_to project.name, project_path(project) %></td>
              <td><%= link_to project.tasks.count, project_tasks_path(project) %>
              </td>
-        </tr>
+          </tr>
       <% end %>
+      <% end%> 
     </tbody>
   </table>
 
