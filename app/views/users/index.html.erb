@@ -21,7 +21,11 @@
 
         <tr>
           <td><%= user.fullname %></td>
+          <% if user == current_user %>
           <td><%= mail_to user.email %></td>
+          <% else %>
+          <td><%= nil %></td>
+          <% end %> 
           <td><div class= "text-right"></td>
           <td><%= link_to 'Edit', user %></td>
 
