@@ -43,6 +43,7 @@ class UsersController < ApplicationController
 
     def show
       @user = User.find(params[:id])
+      @users = User.all
     end
 
     def destroy
@@ -60,6 +61,20 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
     end
+
+    def assert_admin
+      unless current_user
+        render file: "public/404", layout: true, status: :not_found
+      end
+    end
+
+    def team_members
+    @team_members = current_user.projects.flat_map{|project| project.users}
+    end
+
+    def admin
+    end 
+
 end 
   
   

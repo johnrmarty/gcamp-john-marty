@@ -1,7 +1,11 @@
 <div class = "page-header">
   <div class = "pull-right">
+    <% if @user == current_user %> 
     <%= link_to "Edit", edit_user_path(@user), class: "btn btn-info" %>
     <%= link_to "Delete", @user, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% else %>
+    <% nil %>  
+    <% end %> 
   </div>
     <h1><%= @user.fullname %></h1>
 </div>
@@ -19,6 +23,8 @@
           <dt><strong>Email: </strong></dt>
           <dd><%= mail_to @user.email %></dd>
       </dl>
+
+
 
 
 
