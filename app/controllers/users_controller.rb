@@ -36,10 +36,12 @@ class UsersController < ApplicationController
 
 
     def edit
-      @user = User.find(params[:id])
-    end     
+      unless current_user ==@user
+      render :file => "#{Rails.root}/public/404.html",  :status => 404
+      end
+    end 
 
-    
+
 
     def show
       @user = User.find(params[:id])
