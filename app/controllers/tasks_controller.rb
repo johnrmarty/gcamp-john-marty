@@ -2,6 +2,10 @@ class TasksController < ApplicationController
 
   
  before_action :user_logged_in!
+ before_action :set_task, only: [:edit, :update, :delete]
+ before_action :set_project
+ before_action :check_for_admin_or_membership, only: [:edit, :update, :destroy]
+ before_action :check_owner, only: [:edit, :update, :destroy]
 
 
   # GET /tasks
@@ -32,7 +36,6 @@ class TasksController < ApplicationController
   # GET /tasks/1/edit
   def edit
     @project = Project.find(params[:project_id])
-    @task = Task.find(params[:id])
   end
 
 
@@ -51,7 +54,6 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1.json
   def update
    @project = Project.find(params[:project_id])
-   @task = Task.find(params[:id])
    if @task.update(task_params)
     redirect_to project_tasks_path(@project), notice: 'Task was successfully updated.' 
   else
@@ -63,7 +65,6 @@ end
   # DELETE /tasks/1.json
   def destroy
     @project = Project.find(params[:project_id])
-    @task = Task.destroy(params[:id])
     @task.destroy
     redirect_to project_tasks_path(@project), alert: 'Task was successfully destroyed.'
   end
@@ -72,6 +73,10 @@ end
   def login_in
     !current_user = nil?
   end 
+
+    def set_project
+      @project = Project.find(params[:project_id])
+    end 
 
     # Use callbacks to share common setup or constraints between actions.
     def set_task

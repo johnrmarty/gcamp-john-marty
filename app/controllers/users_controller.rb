@@ -61,7 +61,11 @@ class UsersController < ApplicationController
 
     private
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+      if current_user.admin? 
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :admin)
+        else 
+          params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+        end 
     end
 
     def assert_admin
@@ -74,8 +78,7 @@ class UsersController < ApplicationController
     @team_members = current_user.projects.flat_map{|project| project.users}
     end
 
-    def admin
-    end 
+  
 
 end 
   

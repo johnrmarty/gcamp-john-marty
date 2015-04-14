@@ -1,12 +1,13 @@
   
 task cleanup: [:environment] do
-   desc 'Clean up non-associated data'
+   desc 'Clean up non-associated data' 
 
   # Removes all memberships where their users have already been deleted
   # Removes all memberships where their projects have already been deleted
   # Removes any memberships with a null project_id or user_id
   Membership.all.each do |membership|
-    membership.destroy if membership.user_id.nil? or membership.project_id.nil?
+   membership.destroy if membership.user_id.nil? or membership.project_id.nil?
+    puts "Destroying: #{membership}"
   end 
 
   # Removes all tasks where their projects have been deleted
@@ -18,7 +19,9 @@ task cleanup: [:environment] do
   # Removes any comments with a null task_id
   Comment.where(task_id: nil).destroy_all
 
-  end
+  end 
+
+puts "successfully completed" 
 
 # rake cleanup:cleanup
   

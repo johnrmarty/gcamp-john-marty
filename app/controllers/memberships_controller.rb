@@ -1,5 +1,8 @@
 class MembershipsController < ApplicationController
 	
+  before_action :set_membership, only: [:show, :edit, :update, :destroy]
+  before_action :set_project
+  before_action :check_for_admin_or_membership
 
 	def new
     @membership = Membership.new
@@ -32,7 +35,6 @@ class MembershipsController < ApplicationController
 
    def update
    @project = Project.find(params[:project_id])
-   @membership = Membership.find(params[:id])
    if @membership.update(membership_params)
     redirect_to project_memberships_path(@project), notice: "#{@membership.user.fullname} was successfully updated"
   else
@@ -42,15 +44,23 @@ end
 
   def destroy
     @project = Project.find(params[:project_id])
-    @membership = Membership.find(params[:id])
     @membership.destroy
-    redirect_to project_memberships_path(@project), notice: "#{@membership.user.fullname} was successfully deleted"
+    redirect_to projects_path, notice: "#{@membership.user.fullname} was successfully removed"
   end 
 
   private
 	def membership_params
      params.require(:membership).permit(:user_id, :project_id, :role)
-   end
+  end
+
+  def set_membership
+    @membership = Membership.find(params[:id])
+  end
+
+  def set_project
+    @project = Project.find(params[:project_id])
+  end
+
 
 end 
     

@@ -3,8 +3,9 @@
   <div class="container">
     <div class="page-header">
       <div class="pull-right">
+        <% if current_user.project_owner?(@project) || current_user.admin %> 
         <%= link_to 'Edit', edit_project_path, class: "btn btn-info" %>
-        <%= link_to 'Delete', project_path, class: "btn btn-danger" %>
+        <% end %> 
       </div>
       
       <h1><%= @project.name %></h1>
@@ -23,7 +24,8 @@
 
     <br>
     <br>  
-
+    
+    <% if current_user.project_owner?(@project) || current_user.admin %>
     <div class="well">
       <div class="form-group">
         <h1>Delete Project</h1>
@@ -34,7 +36,8 @@
       <div class="form-group">
         <%= link_to 'Delete', @project, class: "btn btn-danger", method: :delete, data: {confirm: "Are you sure?"} %> 
       </div>
-    </div>    
+    </div>
+    <% end %>     
 
 </div>
 </body>

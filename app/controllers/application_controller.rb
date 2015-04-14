@@ -4,7 +4,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
 
- helper_method :current_user
+ helper_method :current_user, :check_for_admin_or_membership
+
+
 
   private
   
@@ -31,4 +33,13 @@ class ApplicationController < ActionController::Base
     current_user.present
   end 
 
+
+  def check_for_admin_or_membership
+      if !(@project.users.include?(current_user) || current_user.admin)
+      redirect_to projects_path, notice: "You do not have access to that project"
+      end
+  end 
+
+
 end
+

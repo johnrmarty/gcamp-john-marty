@@ -28,13 +28,20 @@ has_many :projects, through: :memberships
   end 
 
 
-  def owner?(project)
-    self.memberships.where(role: 0).map(&:project).include?(project)
-  end
+  
 
-  def member?(project)
-    self.memberships.where(role: 1).map(&:project).include?(project)
-  end
+
+   def project_owner?(project)
+    project.memberships.find_by(role: Membership.roles[:owner], user_id: id)
+    end
+
+    def project_member?(project)
+    project.memberships.find_by(role: Membership.roles[:member], user_id: id)
+    end
+
+    def last_project_owner?(project)
+    project.memberships.where(role: Membership.roles[:owner]).count == 1 && project_owner?(project)
+    end
 
 
 end 

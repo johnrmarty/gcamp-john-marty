@@ -1,6 +1,10 @@
 class ProjectsController < ApplicationController
 
     before_action :user_logged_in!
+    before_action :set_project, only: [:edit, :show, :update, :destroy]
+    before_action :check_for_admin_or_membership, only: [:edit, :update, :destroy, :show]
+    before_action :check_owner, only: [:edit, :update, :destroy]
+    
 
    def index
      @projects = Project.all
@@ -8,7 +12,6 @@ class ProjectsController < ApplicationController
    end
 
    def show
-     @project = Project.find(params[:id])
    end
 
    def new
@@ -17,7 +20,6 @@ class ProjectsController < ApplicationController
    end
 
    def edit
-     @project = Project.find(params[:id])
    end
 
    def create
@@ -32,7 +34,6 @@ class ProjectsController < ApplicationController
     end  
 
    def update
-     @project = Project.find(params[:id])
      if @project.update(project_params)
        redirect_to projects_path(@project),  notice: 'Project was successfully edited'
      else
@@ -52,6 +53,17 @@ class ProjectsController < ApplicationController
    def project_params
      params.require(:project).permit(:name)
    end
+
+
+   def set_project
+    @project = Project.find(params[:id])
+   end
+
+   def check_owner
+      unless current_user.admin?
+        redirect_to projects_path, alert: 'You do not have access.' unless current_user.project_owner?(@project)
+      end
+    end
 
  end
 
