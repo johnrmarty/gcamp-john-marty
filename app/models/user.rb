@@ -44,6 +44,7 @@ has_many :projects, through: :memberships
     end
 
 
+
 end 
 
 

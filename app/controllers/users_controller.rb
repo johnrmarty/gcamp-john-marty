@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :user_logged_in!
+  before_action :set_collaborators, only: [:index, :show]
 
   def new
     @user = User.new
@@ -76,6 +77,10 @@ class UsersController < ApplicationController
 
     def team_members
     @team_members = current_user.projects.flat_map{|project| project.users}
+    end
+
+    def set_collaborators
+      @collaborators = current_user.projects.flat_map{|project| project.users}
     end
 
   
