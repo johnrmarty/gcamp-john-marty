@@ -20,8 +20,10 @@
           <dd><%= @user.first_name %></dd>
           <dt><strong>Last Name: </strong></dt>
           <dd><%= @user.last_name %></dd>
+          <% if current_user == @user || current_user.admin? || @collaborators.include?(@user) %>
           <dt><strong>Email: </strong></dt>
-          <dd><%= mail_to @user.email %></dd>
+          <dd><%= @user.email %></dd>
+          <% end %> 
       </dl>
 
 
