@@ -4,6 +4,7 @@ class ProjectsController < ApplicationController
     before_action :set_project, only: [:edit, :show, :update, :destroy]
     before_action :check_for_admin_or_membership, only: [:edit, :update, :destroy, :show]
     before_action :check_owner, only: [:edit, :update, :destroy]
+     
     
 
    def index

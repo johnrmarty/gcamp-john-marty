@@ -19,13 +19,16 @@
       <tbody>
         <% @projects.each do |project| %>
           <tr> 
-             <% if current_user.project_member?(project) || current_user.project_owner?(project) %> 
+             <% if current_user.project_member?(project) || current_user.project_owner?(project) || current_user.admin? %> 
              <td><%= link_to project.name, project_path(project) %></td>
              <td><%= link_to project.tasks.count, project_tasks_path(project) %>
-             </td>
+              <% end %>
+              <% if current_user.admin?  %>
+              <td><%= link_to 'Edit', edit_project_path(project), class: "btn btn-info" %></td>
+              <td><%= link_to 'Delete', project_path(project), class: "btn btn-danger", method: :delete, data: {confirm: 'Are you sure'}  %></td> 
+              <% end %> 
           </tr>
-      <% end %>
-      <% end%> 
+      <% end %> 
     </tbody>
   </table>
 
@@ -34,3 +37,6 @@
 
 </div>
 </body>
+
+
+
