@@ -54,6 +54,18 @@
       </div>
     </div>
 
+    <% if current_user.admin %> 
+      <div class="form-group">
+        <div class="control-label col-md-2 ">
+          <%= f.label :admin %> 
+        </div>
+        <div class="col-md-4">
+          <%= f.check_box :admin %>
+        </div>
+      </div>
+    <% end %> 
+
+
 
 
 

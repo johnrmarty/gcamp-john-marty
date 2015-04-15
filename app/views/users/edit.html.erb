@@ -39,14 +39,55 @@
       </div>
     </div>
 
+  <% if current_user.admin %> 
+
+    <div class="form-group">
+      <div class="control-label col-md-2">
+        <%= f.label :password %>
+      </div>
+      <div class="col-md-4">
+        <%= f.email_field :password, class: "form-control"%>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="control-label col-md-2">
+        <%= f.label :password_confirmation %>
+      </div>
+      <div class="col-md-4">
+        <%= f.email_field :password_confirmation, class: "form-control"%>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="control-label col-md-2 ">
+        <%= f.label :admin %> 
+      </div>
+      <div class="col-md-4">
+        <%= f.check_box :admin %>
+      </div>
+    </div>
+  
+  <% end %> <!-- if current_user.admin -->
+
  <div class="form-group">
   <div class="col-md-4 col-md-offset-2">
     <div class="action">
       <%= f.submit @submit, class: "btn btn-primary btn-md active" %>
       <%= link_to 'cancel', users_path, class: "btn btn-default" %>
-     <!--  <%= link_to 'delete', @user, method: :delete, data: {confirm: 'Are you Sure?'}, class: "btn btn-danger" %> -->
     </div>
   </div>
 </div>
 
+<% if current_user.admin %> 
+<div class="well">
+  <div class="form-group">
+    <div class="col-md-4">
+    <center><%= link_to 'Delete User', edit_user_path(@user), class: "btn btn-danger" %> 
+    </div>
+  </div>
+</div>
+
+
+<% end %> 
 <% end %>
