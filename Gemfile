@@ -3,7 +3,7 @@ ruby '2.2.0'
 
 gem 'bootstrap-sass', '~> 3.3.1'
 
-
+gem 'quiet_assets'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
