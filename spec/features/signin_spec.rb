@@ -15,7 +15,7 @@ describe 'User can sign-in' do
 	 scenario 'Users can sign-in with valid information' do
 
 	 	visit '/'
-		click_on "Signin"
+		click_on "Sign In"
 		fill_in 'Email', :with => "q@q.com"
 		fill_in 'Password', :with => "q"
 		click_on "Sign in"		
@@ -27,7 +27,7 @@ describe 'User can sign-in' do
 	scenario 'Users can NOT sign-in with invalid information' do
 
 	 	visit '/'
-		click_on "Signin"
+		click_on "Sign In"
 		fill_in 'Email', :with => ""
 		fill_in 'Password', :with => ""
 		click_on "Sign in"		

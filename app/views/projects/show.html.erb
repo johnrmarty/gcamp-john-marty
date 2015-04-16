@@ -4,7 +4,7 @@
     <div class="page-header">
       <div class="pull-right">
         <% if current_user.project_owner?(@project) || current_user.admin %> 
-        <%= link_to 'Edit', edit_project_path, class: "btn btn-info" %>
+        <%= link_to 'Edit', edit_project_path, class: "btn btn-info", id:"rspec-project-edit" %>
         <% end %> 
       </div>
       

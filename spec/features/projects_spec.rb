@@ -1,54 +1,46 @@
 require 'rails_helper'
-
+require 'pry'
 
 describe 'User can CRUD a project' do 
 
 	before :each do 
 
-	 User.create(email: 'q@q.com', password: 'q', first_name: 'john', last_name: 'marty')
+	 # User.create!(email: 'q@q.com', password: 'q', first_name: 'john', last_name: 'marty')
+   @user = User.create(email: 'admin@example.com', password: 'password', first_name: 'john', last_name: 'marty')
+   @project = Project.create!(:name => "Example project") 
+   Membership.create(user_id: @user.id, project_id: @project.id, role: "owner")
 		
 		visit '/'
-		click_on "Signin"
-		fill_in 'email', :with => "q@q.com"
-		fill_in 'password', :with => "q"
-		click_on "Sign in"		
-	
-	
-	end 
-	
+		click_on "Sign In"
+		fill_in 'email', :with => "admin@example.com"
+		fill_in 'password', :with => "password"
+		click_on "Sign in"
+  end 
 
-	 scenario 'Users can create a project' do
 
-	
-		
-		click_on "Projects"
+  it "goes to projects index" do
+  expect(page).to have_content "You are signed in"
 
-		click_on "New Project"
-	   	
-    	fill_in 'project[name]', with: "Example project"
-	   	click_on "Create Project"
-		
-		expect(page).to have_content("Project was successfully created") 
+  end 
+	  
+  scenario 'Users can create a project' do
+
+      
+      find("#rspec-new").click
+  	  fill_in 'project[name]', with: "Example project"
+  	  click_on "Create Project"
+  		expect(page).to have_content("Project was successfully created") 
 		
 
-	end 
+	   end 
 
+    scenario 'Users can edit a project' do
+      Membership.create(project_id: @project.id, user_id: @user.id, role: 'owner')
+      first(:link, 'Example project').click
 
-
-
-scenario 'Users can edit a project' do
-
-	@project = Project.create(:name => "Example project")
-		
-		visit '/'
-
-		click_on "Projects"
-		
-		click_on "Edit"
-		click_on "Edit"
-		
-		fill_in 'project[name]', with: "Example task edit 123"
-		click_on "Update Project"
+      click_on "Edit"  
+  		fill_in 'project[name]', with: "Example task edit 123"
+  		click_on "Update Project"
 
 		expect(page).to have_content("Project was successfully edited")
 		
@@ -59,30 +51,24 @@ scenario 'Users can edit a project' do
 
 scenario 'Users can show a project' do
 
+		Membership.create(project_id: @project.id, user_id: @user.id, role: 'owner')
 
-	@project = Project.create(:name => "Example task edit 123")
-		
-		visit '/'
+		first(:link, 'Example project').click
 
-		click_on "Projects"
-		
-		click_on "Example task edit 123"
-
-		expect(page).to have_content("Example task edit 123")
+		expect(page).to have_content("Example project")
 
 
 	end 
 
 
 
-scenario 'Users can delete a task' do 
+scenario 'Users can delete a project' do 
 
-	@task = Task.create(:description => "Example task", :due_date => "2015-01-30")
-		visit "/tasks"
+    Membership.create(project_id: @project.id, user_id: @user.id, role: 'owner')
 
-		click_on "Tasks"
-		click_on "Destroy"
-		expect(page).to have_content("Task was successfully destroyed.")
+    first(:link, 'Example project').click
+		click_on "Delete"
+		expect(page).to have_content("Project was successfully destroyed")
 
 	end 
 
