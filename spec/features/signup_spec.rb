@@ -6,10 +6,10 @@ describe 'User can Register for gCamp' do
 
 
 
-	 scenario 'Users can signup for gCamp' do
+	 scenario 'Users can register for gCamp' do
 	
 		visit '/'
-		click_on "Signup"
+		click_on "Register"
 		fill_in 'First name', :with => "john"
 		fill_in 'Last name', :with => "john"
 		fill_in 'Email', :with => "j@j.com"
@@ -17,7 +17,9 @@ describe 'User can Register for gCamp' do
 		fill_in 'Password confirmation', :with => "john"
 		click_on "Create User"	
 
-		expect(page).to have_content("You successfully signed in") 
+		expect(page).to have_content("You successfully signed in")
+		expect(page).to have_content("Projects")
+
 	
 
 	end 
@@ -26,7 +28,7 @@ describe 'User can Register for gCamp' do
 	 scenario 'Users can NOT signup for gCamp with empty fields' do
 	
 		visit '/'
-		click_on "Signup"
+		click_on "Register"
 		fill_in 'First name', :with => ""
 		fill_in 'Last name', :with => ""
 		fill_in 'Email', :with => ""
@@ -44,7 +46,7 @@ describe 'User can Register for gCamp' do
 		User.create(email: 'q@q.com', password: 'q', first_name: 'john', last_name: 'marty')
 	
 		visit '/'
-		click_on "Signup"
+		click_on "Register"
 		fill_in 'First name', :with => "john"
 		fill_in 'Last name', :with => "john"
 		fill_in 'Email', :with => "q@q.com"
