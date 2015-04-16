@@ -21,37 +21,45 @@
 <% end %> 
 
 
-
-
-
 <div class="form-inline">
-  <div class="row">
+  <% if current_user.project_owner?(@project) || current_user.admin %> 
     <% @project.memberships.each do |membership| %>
     <%= form_for [@project, membership] do |f| %>
-      <div class="form-group col-md-2">
-        <%= link_to membership.user.fullname, user_path(membership.user) if membership.user %>
-      </div>
-      <div class="form-group">
-        <%= f.select :role, Membership.roles.keys.map {|role| [role.titleize,role]}, {}, class:"form-control"%>
-      </div>
-      <div class="form-group">
-        <div class="action">
-          <%= f.submit "Update", class: "btn btn-info" %>
-          <% if current_user.project_owner?(@project) || current_user.admin || membership.user == current_user %>
-          <%= link_to "<span class=\"glyphicon glyphicon-remove\"></span>".html_safe, project_membership_path(@project, membership), method: :delete %>
-          <% end %> 
-          <% if @project.memberships.where(:role => 1).length == 1 && current_user.project_owner?(@project) && membership.role == "owner" %>
-             You are the last owner 
-          <% end %> 
+    <%= link_to membership.user.fullname, user_path(membership.user) %>
+    <%= f.select :role, Membership.roles.keys.map {|role| [role.titleize,role]}, {}, class:"form-control"%>
+        <%= f.submit "Update", class: "btn btn-info" %>
+        <% if current_user.project_owner?(@project) && membership.user == current_user %>
+            You are the last owner
+            <% else %> 
+        <%= link_to "<span class=\"glyphicon glyphicon-remove\"></span>".html_safe, project_membership_path(@project, membership), method: :delete %>
+      <% end %>  
+    <% end %> 
+  <% end %> 
+</div>  <!-- form-inline -->
+<% else %>
+  <table class="table">
+    <thead></thead>
+      <tbody>
+        <% @project.memberships.each do |membership|%> 
+          <tr>
+            <td class="col-xs-4"><%= membership.user.fullname%></td>
+            <td class="col-xs-2"><%= membership.role%></td>
+            <% if membership.user == current_user %>
+            <td><%= link_to "<span class=\"glyphicon glyphicon-remove\"></span>".html_safe, project_membership_path(@project, membership), method: :delete %></td>
+            <% else %>
+              <td></td>
+            <% end %> 
+          </tr>
+        <% end %> 
+      </tbody>
+  </table> 
+<% end %>  
 
 
-        </div>
-      </div>
-    <% end %>
-    <br>
-    <% end %>
-  </div>
-</div>
+
+
+
+
  
  
 

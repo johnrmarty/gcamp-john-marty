@@ -4,7 +4,7 @@ class TasksController < ApplicationController
  before_action :user_logged_in!
  before_action :set_task, only: [:edit, :update, :destroy]
  before_action :set_project
- before_action :check_for_admin_or_membership, only: [:edit, :update, :destroy]
+ before_action :check_for_admin_or_membership, only: [:edit, :update, :destroy, :show, :new ]
  # before_action :check_owner, only: [:edit, :update, :destroy]
 
 

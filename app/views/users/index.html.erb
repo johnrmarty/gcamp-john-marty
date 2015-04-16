@@ -9,34 +9,30 @@
 
 
     <table class="table table-striped">
-
       <thead>
-        <th> Name </th>
-        <th>  Email </th>
+        <th class="col-md-3">Name</th>
+        <th> Email </th>
+        <th></th>
       </thead>
-
       <tbody>
         <% @users.each do |user| %>
-
-        <tr>
-          <td><%= link_to user.fullname, user_path(user) %></td>
-          <% if current_user.admin? || current_user == user  || @collaborators.include?(user) %>
-          <td><%= mail_to user.email %></td>
-          <% else %>
-          <td><%= nil %></td>
-          <% end %> 
-          <td><div class= "text-right"></td>
-          <% if current_user == user || current_user.admin?  %>
-          <td><%= link_to 'Edit', user, class: "btn btn-info" %></td>
-          <td><%= link_to 'Delete', user, class: "btn btn-danger", method: :delete, data: {confirm: 'Are you sure'}  %></td>
-          <% else %> 
-          <td><%= nil %></td>
-          <% end %> 
-        </tr>
+          <tr>
+            <td><%= link_to user.fullname, user_path(user) %></td> <!-- first row -->
+              <% if current_user.admin? || current_user == user  || @collaborators.include?(user) %>
+                <td><%= mail_to user.email %></td> <!-- second row -->
+              <% else %>
+                <td><%= nil %></td>
+              <% end %> 
+              <div class= "pull-right">
+                <% if current_user == user || current_user.admin?  %>
+                  <td><%= link_to 'Edit', user, class: "btn btn-info" %></td><!--  third row -->
+                  <td><%= link_to 'Delete', user, class: "btn btn-danger", method: :delete, data: {confirm: 'Are you sure'}  %></td> <!-- fourth row -->
+                <% else %> 
+              <td><%= nil %></td>
+            <% end %> 
+          </tr>
       </tbody>
-
     <% end %>
     </table>
-
   </body>
 </div>
