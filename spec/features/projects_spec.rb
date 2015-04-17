@@ -51,7 +51,7 @@ describe 'User can CRUD a project' do
 
     end 
 
-    scenario 'Users can delete a project' do 
+      scenario 'Users can delete a project' do 
 
       Membership.create(project_id: @project.id, user_id: @user.id, role: 'owner')
       first(:link, 'Example project').click

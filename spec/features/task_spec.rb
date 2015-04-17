@@ -6,13 +6,16 @@ describe 'User can CRUD a task' do
 
 	before :each do 
 
-	 User.create(email: 'q@q.com', password: 'q', first_name: 'john', last_name: 'marty')
+	@user = User.create(email: 'admin@example.com', password: 'password', first_name: 'john', last_name: 'marty')
+    @project = Project.create!(:name => "Example project") 
+    Membership.create!(user_id: @user.id, project_id: @project.id, role: "owner")
+    
 		
 		visit '/'
-		click_on "Signin"
-		fill_in 'email', :with => "q@q.com"
-		fill_in 'password', :with => "q"
-		click_on "Sign in"		
+		click_on "Sign In"
+		fill_in 'email', :with => "admin@example.com"
+		fill_in 'password', :with => "password"
+		click_on "Sign in"	
 	
 	
 	end 
@@ -20,13 +23,12 @@ describe 'User can CRUD a task' do
 
 	 scenario 'Users can create a task' do
 
-		click_on "Tasks"
-		# click on link to go to new task form
-		click_on "New Task"
-		#filling out form for task
-	   	
+	 	first(:link, 'Example project').click
+
+		click_on "0 Tasks"
+		click_on "New Task"	   	
     	fill_in 'task[description]', with: "Example task"
-	   	click_on "Create task"
+	   	click_on "Create Task"
 		
 		expect(page).to have_content("Task was successfully created.") 
 		expect(page).to have_content("Example task") 
@@ -38,8 +40,10 @@ describe 'User can CRUD a task' do
 
 scenario 'Users can edit a task' do
 
-	@task = Task.create(:description => "Example task", :due_date => "2015-01-30")
-		visit "/tasks"
+		@task = Task.create(project_id: @project.id, :description => "Example task", :due_date => "2015-01-30")
+
+		first(:link, 'Example project').click
+		click_on "1 Task"
 		click_on "Edit"
 		fill_in 'task[description]', with: "Example task edit"
 		click_on "Update Task"
@@ -53,12 +57,11 @@ scenario 'Users can edit a task' do
 
 scenario 'Users can show a task' do
 
-	@task = Task.create(:description => "Example task", :due_date => "2015-01-30")
-		visit "/tasks"
-
-		click_on "Example task"
-		expect(page).to have_content("Example task")
-		expect(page).to have_content("2015-01-30")
+		@task = Task.create(project_id: @project.id, :description => "Example task", :due_date => "2015-01-30")
+		first(:link, 'Example project').click
+		click_on "1 Task"
+		expect(page).to have_content("Tasks for Example project")
+		
 
 	end 
 
@@ -66,9 +69,10 @@ scenario 'Users can show a task' do
 
 scenario 'Users can delete a task' do 
 
-	@task = Task.create(:description => "Example task", :due_date => "2015-01-30")
-		visit "/tasks"
-		click_on "Destroy"
+		@task = Task.create(project_id: @project.id, :description => "Example task", :due_date => "2015-01-30")
+		first(:link, 'Example project').click
+		click_on "1 Task"
+		find("#rspec-task-delete").click
 		expect(page).to have_content("Task was successfully destroyed.")
 
 	end 

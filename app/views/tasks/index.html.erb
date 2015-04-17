@@ -32,12 +32,11 @@
         <td><%= task.due_date %></td>
         <td><div class="text-right">
           <%= link_to 'Edit', edit_project_task_path(@project, task), class: "btn btn-info" %>
-          <%= link_to project_task_path(@project, task), method: :delete, data: {confirm: 'Are you sure'} do %>
-            <span class= "glyphicon glyphicon-remove"></span>
+          <%= link_to "<span class='glyphicon glyphicon-remove'></span>", project_task_path(@project, task), method: :delete, id:"rspec-task-delete", data: {confirm: 'Are you sure'} %>
+      
           </div>
         </td>
       </tr>
-      <% end %>
       <% end %>
     </tbody>
   </table>

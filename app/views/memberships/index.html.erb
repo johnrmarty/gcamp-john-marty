@@ -45,7 +45,7 @@
             <td class="col-xs-4"><%= membership.user.fullname%></td>
             <td class="col-xs-2"><%= membership.role%></td>
             <% if membership.user == current_user %>
-            <td><%= link_to "<span class=\"glyphicon glyphicon-remove\"></span>".html_safe, project_membership_path(@project, membership), method: :delete %></td>
+            <td><%= link_to "<span class=\"glyphicon glyphicon-remove\"></span>".html_safe, project_membership_path(@project, membership), method: :delete, id: "rspec-membership-delete" %></td>
             <% else %>
               <td></td>
             <% end %> 
@@ -54,6 +54,7 @@
       </tbody>
   </table> 
 <% end %>  
+
 
 
 

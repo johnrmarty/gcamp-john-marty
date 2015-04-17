@@ -13,6 +13,7 @@ task cleanup: [:environment] do
   # Removes all tasks where their projects have been deleted
   # Removes any tasks with null project_id
   Task.where(project_id: nil).destroy_all
+  puts "Destroying: #{task}"
 
 
   # Removes all comments where their tasks have been deleted
