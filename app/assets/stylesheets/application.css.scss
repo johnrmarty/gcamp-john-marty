@@ -5,6 +5,9 @@
 
 
 
+ @import url(http://fonts.googleapis.com/css?family=Poiret+One);
+ @import url(http://fonts.googleapis.com/css?family=Open+Sans:700);
+
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
@@ -41,6 +44,35 @@
  #remove-css {
  	padding-left: 12px;
  }
+
+.h1	{
+font-family: 'Open Sans', sans-serif;
+}
+
+.p {
+	
+	font-family: 'Poiret One', cursive;
+}
+
+.jumbotron {
+	height: 200px;
+
+}
+
+.img-responsive {
+	border-radius: 5px;
+}
+
+#panel-css {
+	border-radius: 5px;
+
+}
+
+
+
+
+
+
 
 
 

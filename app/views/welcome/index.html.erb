@@ -1,7 +1,6 @@
 
 <!-- Main jumbotron for a primary marketing message or call to action -->
 
-
   <div class="jumbotron">
 
     <h1>Taskly</h1>
@@ -16,19 +15,20 @@
 
     <div class="col-md-4">
       <p class='lead'><%=image_tag("8969237967_c5960fc544_b.jpg" ,class: "img-responsive") %></p>
-      <div class="panel panel-primary">
+      <div class="panel panel-primary" id="panel-css">
         <div class="panel-heading">
           <h3 class="panel-title">Tasks</h3>
         </div>
         <div class="panel-body">
           <p>Grouped by projects and lists, just the way you like'em</p>
+          <br>
         </div>
       </div>
     </div>
 
     <div class="col-md-4">
       <p class='lead'><%=image_tag("8864977481_713b7cbda5_b (1).jpg" ,class: "img-responsive") %></p>
-      <div class="panel panel-primary">
+      <div class="panel panel-primary" id="panel-css">
         <div class="panel-heading">
           <h3 class="panel-title">Documents</h3>
         </div>
@@ -46,7 +46,7 @@
 
     <div class="col-md-4">
       <p class='lead'><%=image_tag("8864977481_713b7cbda5_b.jpg" ,class: "img-responsive") %></p>
-      <div class="panel panel-primary">
+      <div class="panel panel-primary" id="panel-css">
         <div class="panel-heading">
           <h3 class="panel-title">Comments</h3>
         </div>
@@ -54,6 +54,7 @@
           <ul>
             <li>Comment on tasks and documents</li>
             <li>Get email notifications</li>
+            <br>
           </ul>
         </div>
       </div>
@@ -61,8 +62,10 @@
 
   </div>
 
-
+    <div class="well">
     <% @quotes.each do |quote| %>
     <p><%= quote[0] %></p>
     <p><em class='text-muted'>-<%= quote[1] %> </em></p>
     <% end %>
+    </div>
+
